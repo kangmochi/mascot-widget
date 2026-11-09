@@ -827,6 +827,12 @@ const CSS = `
 .mg-say{position:relative;max-width:230px;padding:8px 12px;border-radius:19px;border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary));background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 84%,transparent);color:var(--ui-text-secondary);font-size:11px;line-height:1.4;z-index:1;box-shadow:0 10px 24px rgb(0 0 0 / .35)}
 .mg-say[data-state=busy]{color:var(--ui-text-primary)}
 .mg-say-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px}
+.mg-d1{width:16px;height:16px;margin-left:16px}
+.mg-d2{width:12px;height:12px;margin-left:6px}
+.mg-d3{width:16px;height:16px;margin-left:16px}
+.mg-d4{width:9px;height:9px;margin-left:6px}
+.mg-say-dot{display:block;border-radius:50%;background:transparent;border:1.6px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
+
   background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 82%,transparent);
   border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
 .mg-float[data-reaction=hop] .mg-mascot-btn{animation:mg-hop .6s cubic-bezier(.28,.84,.42,1)}
@@ -1750,7 +1756,11 @@ function Speech({ snap, prefs }) {
         className: 'mg-say',
         'data-state': stateOf(snap),
         children: focusLeft ? t('focusOn').replace('{0}', fmtClock(focusLeft)) : speechLine(snap, prefs)
-      }),,
+      }),
+      jsx('span', { className: 'mg-say-dot mg-d1' }),
+      jsx('span', { className: 'mg-say-dot mg-d2' }),
+      jsx('span', { className: 'mg-say-dot mg-d3' }),
+      jsx('span', { className: 'mg-say-dot mg-d4' })
     ]
   })
 }
