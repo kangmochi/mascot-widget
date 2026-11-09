@@ -792,16 +792,16 @@ const CSS = `
 .mg-pill:hover{border-color:var(--ui-accent);transform:translateY(-1px)}
 .mg-pill-k{font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-quaternary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mg-pill-v{font-size:11px;font-weight:700;color:var(--ui-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mg-stack{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.mg-stack{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
 .mg-under{display:flex;align-items:flex-end;gap:6px}
 .mg-gear{width:24px;height:24px;border-radius:7px;border:1px solid var(--ui-stroke-secondary);background:var(--ui-bg-primary,#0f1116);color:var(--ui-text-tertiary);font-size:12px;cursor:pointer;line-height:1}
 .mg-gear:hover{color:var(--ui-text-primary);border-color:var(--ui-accent)}
-.mg-modal{position:absolute;left:0;bottom:0;left:calc(100% + 12px);width:380px;max-height:64vh;overflow:auto;border:1px solid color-mix(in srgb,var(--ui-accent) 25%,var(--ui-stroke-secondary));border-radius:14px;background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 88%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 22px 54px rgb(0 0 0 / .55);padding:12px;z-index:2147483100}
+.mg-modal{position:absolute;left:0;bottom:0;left:calc(100% + 12px);width:380px;max-height:64vh;overflow:auto;border:1px solid color-mix(in srgb,var(--ui-accent) 25%,var(--ui-stroke-secondary));border-radius:14px;background:#0f1520;box-shadow:0 22px 54px rgb(0 0 0 / .55);padding:12px;z-index:2147483100}
 .mg-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .mg-modal-actions{display:flex;align-items:center;gap:6px}
-.mg-modal-close{flex:none;padding:3px 12px}
-.mg-x{width:24px;height:24px;flex:none;border-radius:6px;border:1px solid var(--ui-stroke-secondary);background:transparent;color:var(--ui-text-tertiary);font-size:12px;line-height:1;cursor:pointer}
-.mg-x:hover{color:var(--ui-text-primary);border-color:var(--ui-accent)}
+.mg-modal-close{flex:none;padding:3px 12px;color:#e6e9ef;border-color:#2b3446;background:#151b26}
+.mg-x{width:24px;height:24px;flex:none;border-radius:6px;border:1px solid #2b3446;background:#151b26;color:#e6e9ef;font-size:12px;line-height:1;cursor:pointer}
+.mg-x:hover{color:#fff;border-color:var(--ui-accent);background:#1c2431}
 .mg-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mg-modal-grid>div:first-child{grid-column:1 / -1}
 .mg-tabs{display:flex;gap:4px;margin:2px 0 4px}
@@ -824,14 +824,14 @@ const CSS = `
 .mg-trail-dot[data-kind=file]{background:#f59e0b}
 .mg-trail-dot[data-kind=media]{background:#c084fc}
 .mg-trail-dot[data-recent=true]{box-shadow:0 0 0 2px color-mix(in srgb,var(--ui-accent) 55%,transparent)}
-.mg-say{position:relative;max-width:230px;padding:8px 12px;border-radius:19px;border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary));background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 84%,transparent);color:var(--ui-text-secondary);font-size:11px;line-height:1.4;z-index:1;box-shadow:0 10px 24px rgb(0 0 0 / .35)}
+.mg-say{position:relative;max-width:320px;min-width:215px;padding:8px 12px;border-radius:19px;border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary));background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 84%,transparent);color:var(--ui-text-secondary);font-size:11px;line-height:1.4;z-index:1;box-shadow:0 10px 24px rgb(0 0 0 / .35)}
 .mg-say[data-state=busy]{color:var(--ui-text-primary)}
-.mg-say-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;gap:4px}
-.mg-d1{width:16px;height:16px;margin-left:16px}
-.mg-d2{width:12px;height:12px;margin-left:6px}
-.mg-d3{width:16px;height:16px;margin-left:16px}
-.mg-d4{width:9px;height:9px;margin-left:6px}
-.mg-say-dot{display:block;border-radius:50%;background:transparent;border:1.6px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
+.mg-say-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:-3px}
+.mg-d1{width:13px;height:13px;margin-left:6px}
+.mg-d2{width:10px;height:10px;margin-left:14px}
+.mg-d3{width:13px;height:13px;margin-left:6px}
+.mg-d4{width:7px;height:7px;margin-left:14px}
+.mg-say-dot{display:block;border-radius:50%;background:var(--ui-bg-primary,#0b0f16);border:1.5px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
 
   background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 82%,transparent);
   border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
@@ -907,13 +907,15 @@ const CSS = `
 @keyframes mg-row-in{from{opacity:0;transform:translateX(-3px)}to{opacity:1;transform:none}}
 .mg-ring{display:block}
 .mg-spark{display:block;overflow:visible;opacity:.9}
-.mg-mascot-btn{border-radius:50%;isolation:isolate}
+.mg-mascot-btn{border-radius:50%;isolation:isolate;margin-top:3px}
 .mg-mascot-btn[data-state=busy] img{filter:drop-shadow(0 0 18px color-mix(in srgb,var(--ui-accent) 70%,transparent)) drop-shadow(0 0 42px color-mix(in srgb,var(--ui-accent) 45%,transparent))}
 .mg-mascot-btn[data-state=thinking] img{filter:drop-shadow(0 0 18px color-mix(in srgb,var(--ui-accent) 70%,transparent)) drop-shadow(0 0 42px color-mix(in srgb,var(--ui-accent) 45%,transparent))}
 .mg-mascot-btn[data-state=waiting] img{filter:drop-shadow(0 0 14px color-mix(in srgb,var(--ui-accent) 55%,transparent))}
 .mg-pill{border-radius:10px}
 .mg-pill-v{font-variant-numeric:tabular-nums;letter-spacing:.01em}
 .mg-btn{border-radius:8px;font-weight:600;letter-spacing:.01em;transition:background .15s,color .15s,transform .12s}
+.mg-modal-head .mg-btn,.mg-modal-head .mg-modal-close,.mg-modal-close.mg-btn{background:#151b26;color:#e6e9ef;border:1px solid #2b3446;opacity:1}
+.mg-modal-head .mg-x{background:#151b26;color:#e6e9ef;border:1px solid #2b3446;opacity:1}
 .mg-btn:active{transform:scale(.97)}
 .mg-sec-card .mg-card-h{color:var(--ui-text-primary)}
 .mg-modal-head{border-bottom:1px solid color-mix(in srgb,var(--ui-accent) 18%,var(--ui-stroke-secondary));padding-bottom:8px}
