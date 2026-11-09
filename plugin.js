@@ -1,5 +1,5 @@
 /**
- * Mascot Guide — a companion for the Hermes desktop app.
+ * Mascot Guide, a companion for the Hermes desktop app.
  *
  * A floating mascot (96px) in the corner of the window. Click it and an
  * "Agent Status" bubble opens with model, tokens, context, cost and activity,
@@ -63,17 +63,17 @@ const EN = {
   zoom: 'Zoom',
   offset: 'Offset Y',
   now: 'Now',
-  sayIdle: 'Standing by — call me if needed',
+  sayIdle: 'Standing by, call me if needed',
   sayIdle2: 'I keep an eye on this window',
   sayIdle3: 'Click me if you are curious',
   sayBusy: 'Working… {0}',
   sayThink: 'Thinking it through…',
   sayThink2: 'Give me a moment',
   sayThink3: 'Weighing the options…',
-  sayWaiting: 'Done — your turn',
+  sayWaiting: 'Done, your turn',
   sayWaiting2: 'Finished, take a look',
-  sayWaiting3: 'All set — continue?',
-  sayFull: 'Context at {0}% — want me to compress?',
+  sayWaiting3: 'All set, continue?',
+  sayFull: 'Context at {0}%, want me to compress?',
   compress: 'Compress',
   stop: 'Stop',
   compressed: 'Context compressed',
@@ -100,12 +100,12 @@ const EN = {
   cardCron: 'Next cron',
   focus: 'Fokus 25m',
   focusOn: 'Fokus {0}',
-  focusDone: 'Sesi fokus selesai — istirahat dulu',
+  focusDone: 'Sesi fokus selesai, istirahat dulu',
   speak: 'Bacakan',
   stopSpeak: 'Stop suara',
   focus: 'Focus 25m',
   focusOn: 'Focus {0}',
-  focusDone: 'Focus finished — take a break',
+  focusDone: 'Focus finished, take a break',
   speak: 'Speak',
   stopSpeak: 'Stop voice',
   mascot: 'Mascot',
@@ -118,7 +118,7 @@ const EN = {
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4 (green screen auto-keyed).',
   tools: 'tools',
   recent: 'Recent',
-  ctxWarn: 'Context almost full — consider compressing',
+  ctxWarn: 'Context almost full, consider compressing',
   close: 'Close',
   tokensShort: 'Tokens',
 }
@@ -184,12 +184,12 @@ const IDN = {
   cardCron: 'Next cron',
   focus: 'Fokus 25m',
   focusOn: 'Fokus {0}',
-  focusDone: 'Sesi fokus selesai — istirahat dulu',
+  focusDone: 'Sesi fokus selesai, istirahat dulu',
   speak: 'Bacakan',
   stopSpeak: 'Stop suara',
   focus: 'Focus 25m',
   focusOn: 'Focus {0}',
-  focusDone: 'Focus finished — take a break',
+  focusDone: 'Focus finished, take a break',
   speak: 'Speak',
   stopSpeak: 'Stop voice',
   mascot: 'Maskot',
@@ -202,7 +202,7 @@ const IDN = {
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4 (green screen otomatis di-key).',
   tools: 'tool',
   recent: 'Terakhir',
-  ctxWarn: 'Konteks hampir penuh — sebaiknya ringkas',
+  ctxWarn: 'Konteks hampir penuh, sebaiknya ringkas',
   sayIdle: 'Santai dulu, panggil kalau butuh',
   sayIdle2: 'Aku jaga layar ini ya',
   sayIdle3: 'Klik aku kalau penasaran',
@@ -210,10 +210,10 @@ const IDN = {
   sayThink: 'Mikir dulu ya…',
   sayThink2: 'Bentar, aku susun langkahnya',
   sayThink3: 'Lagi nimbang-nimbang…',
-  sayWaiting: 'Selesai — giliran kamu',
+  sayWaiting: 'Selesai, giliran kamu',
   sayWaiting2: 'Udah kelar, cek ya',
-  sayWaiting3: 'Beres — mau lanjut?',
-  sayFull: 'Konteks {0}% — mau aku ringkas?',
+  sayWaiting3: 'Beres, mau lanjut?',
+  sayFull: 'Konteks {0}%, mau aku ringkas?',
   close: 'Tutup',
   tokensShort: 'Token',
   model: 'Model',
@@ -263,10 +263,10 @@ const ES = {
   sayThink: 'Pensando…',
   sayThink2: 'Dame un momento',
   sayThink3: 'Sopesando opciones…',
-  sayWaiting: 'Listo — te toca',
+  sayWaiting: 'Listo, te toca',
   sayWaiting2: 'Terminado, revisa',
-  sayWaiting3: 'Hecho — ¿seguimos?',
-  sayFull: 'Contexto al {0}% — ¿lo resumo?',
+  sayWaiting3: 'Hecho, ¿seguimos?',
+  sayFull: 'Contexto al {0}%, ¿lo resumo?',
   compress: 'Resumir',
   stop: 'Detener',
   compressed: 'Contexto resumido',
@@ -294,7 +294,7 @@ const ES = {
   reset: 'Usar la de defecto',
   tooBig: 'Imagen muy grande (máx 700 KB)',
   tools: 'herr.',
-  ctxWarn: 'Contexto casi lleno — conviene resumir',
+  ctxWarn: 'Contexto casi lleno, conviene resumir',
   close: 'Cerrar',
   cardCache: 'Aciertos de caché',
   cardCron: 'Próximo cron',
@@ -302,7 +302,7 @@ const ES = {
   cardEta: 'ETA de contexto',
   focus: 'Foco 25m',
   focusOn: 'Foco {0}',
-  focusDone: 'Enfoque terminado — descansa',
+  focusDone: 'Enfoque terminado, descansa',
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4 (croma automático)',
   offset: 'Desfase Y',
   speak: 'Leer',
@@ -354,10 +354,10 @@ const PT = {
   sayThink: 'Pensando…',
   sayThink2: 'Só um instante',
   sayThink3: 'Pesando as opções…',
-  sayWaiting: 'Pronto — sua vez',
+  sayWaiting: 'Pronto, sua vez',
   sayWaiting2: 'Terminei, confere',
-  sayWaiting3: 'Feito — seguimos?',
-  sayFull: 'Contexto em {0}% — resumo?',
+  sayWaiting3: 'Feito, seguimos?',
+  sayFull: 'Contexto em {0}%, resumo?',
   compress: 'Resumir',
   stop: 'Parar',
   compressed: 'Contexto resumido',
@@ -385,7 +385,7 @@ const PT = {
   reset: 'Usar padrão',
   tooBig: 'Imagem grande demais (máx 700 KB)',
   tools: 'ferr.',
-  ctxWarn: 'Contexto quase cheio — vale resumir',
+  ctxWarn: 'Contexto quase cheio, vale resumir',
   close: 'Fechar',
   cardCache: 'Acertos de cache',
   cardCron: 'Próximo cron',
@@ -393,7 +393,7 @@ const PT = {
   cardEta: 'ETA do contexto',
   focus: 'Foco 25m',
   focusOn: 'Foco {0}',
-  focusDone: 'Foco concluído — descanse',
+  focusDone: 'Foco concluído, descanse',
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4 (croma automático)',
   offset: 'Deslocamento Y',
   speak: 'Falar',
@@ -445,10 +445,10 @@ const JA = {
   sayThink: '考え中…',
   sayThink2: '少し待ってね',
   sayThink3: '選択肢を検討中…',
-  sayWaiting: '完了 — どうぞ',
+  sayWaiting: '完了, どうぞ',
   sayWaiting2: '終わりました、確認してね',
-  sayWaiting3: 'できたよ — 続けますか？',
-  sayFull: 'コンテキスト {0}% — 要約する？',
+  sayWaiting3: 'できたよ, 続けますか？',
+  sayFull: 'コンテキスト {0}%, 要約する？',
   compress: '要約',
   stop: '停止',
   compressed: 'コンテキストを要約しました',
@@ -476,7 +476,7 @@ const JA = {
   reset: '既定に戻す',
   tooBig: '画像が大きすぎます（最大700KB）',
   tools: 'ツール',
-  ctxWarn: 'コンテキストがほぼ一杯 — 要約を推奨',
+  ctxWarn: 'コンテキストがほぼ一杯, 要約を推奨',
   close: '閉じる',
   cardCache: 'キャッシュ命中',
   cardCron: '次のcron',
@@ -484,7 +484,7 @@ const JA = {
   cardEta: '残り時間',
   focus: '集中25分',
   focusOn: '集中 {0}',
-  focusDone: '集中終了 — 休憩を',
+  focusDone: '集中終了, 休憩を',
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4（緑背景を自動除去）',
   offset: 'Yオフセット',
   speak: '読み上げ',
@@ -536,10 +536,10 @@ const ZH = {
   sayThink: '想一下…',
   sayThink2: '稍等片刻',
   sayThink3: '权衡方案中…',
-  sayWaiting: '好了 — 轮到你了',
+  sayWaiting: '好了, 轮到你了',
   sayWaiting2: '做完了，看看',
-  sayWaiting3: '完工 — 继续吗？',
-  sayFull: '上下文 {0}% — 要压缩吗？',
+  sayWaiting3: '完工, 继续吗？',
+  sayFull: '上下文 {0}%, 要压缩吗？',
   compress: '压缩',
   stop: '停止',
   compressed: '上下文已压缩',
@@ -567,7 +567,7 @@ const ZH = {
   reset: '恢复默认',
   tooBig: '图片太大（上限 700KB）',
   tools: '工具',
-  ctxWarn: '上下文快满了 — 建议压缩',
+  ctxWarn: '上下文快满了, 建议压缩',
   close: '关闭',
   cardCache: '缓存命中',
   cardCron: '下一个定时',
@@ -575,7 +575,7 @@ const ZH = {
   cardEta: '预计剩余',
   focus: '专注25分',
   focusOn: '专注 {0}',
-  focusDone: '专注结束 — 休息一下',
+  focusDone: '专注结束, 休息一下',
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4（自动抠绿）',
   offset: 'Y 偏移',
   speak: '朗读',
@@ -628,10 +628,10 @@ const KO = {
   sayThink: '생각 중…',
   sayThink2: '잠시만요',
   sayThink3: '선택지를 저울질하는 중…',
-  sayWaiting: '끝났어요 — 이제 당신 차례',
+  sayWaiting: '끝났어요, 이제 당신 차례',
   sayWaiting2: '완료했어요, 확인해 주세요',
-  sayWaiting3: '다 됐어요 — 계속할까요?',
-  sayFull: '컨텍스트 {0}% — 요약할까요?',
+  sayWaiting3: '다 됐어요, 계속할까요?',
+  sayFull: '컨텍스트 {0}%, 요약할까요?',
   compress: '요약',
   stop: '중지',
   compressed: '컨텍스트를 요약했습니다',
@@ -659,7 +659,7 @@ const KO = {
   reset: '기본값 사용',
   tooBig: '이미지가 너무 큽니다 (최대 700KB)',
   tools: '도구',
-  ctxWarn: '컨텍스트가 거의 찼습니다 — 요약을 권장합니다',
+  ctxWarn: '컨텍스트가 거의 찼습니다, 요약을 권장합니다',
   close: '닫기',
   cardCache: '캐시 적중',
   cardCron: '다음 크론',
@@ -667,7 +667,7 @@ const KO = {
   cardEta: '남은 시간',
   focus: '집중 25분',
   focusOn: '집중 {0}',
-  focusDone: '집중 종료 — 쉬어가요',
+  focusDone: '집중 종료, 쉬어가요',
   formatHint: 'PNG/JPG/SVG · GIF/WebM · MP4(그린 스크린 자동 제거)',
   offset: 'Y 오프셋',
   speak: '읽어주기',
@@ -744,14 +744,14 @@ function fmtTokens(n) {
 
 function fmtCost(v) {
   const n = Number(v)
-  if (!Number.isFinite(n) || n <= 0) return '—'
+  if (!Number.isFinite(n) || n <= 0) return '-'
   return n < 0.01 ? `$${n.toFixed(4)}` : `$${n.toFixed(2)}`
 }
 
 function shortModel(model) {
-  if (!model) return '—'
+  if (!model) return '-'
   const raw = typeof model === 'string' ? model : model.id || model.name || model.model || ''
-  if (!raw) return '—'
+  if (!raw) return '-'
   const tail = String(raw).split('/').pop() || String(raw)
   return tail.length > 28 ? `${tail.slice(0, 27)}…` : tail
 }
@@ -766,7 +766,7 @@ function providerLabel(model) {
   if (head.includes('google')) return 'Google'
   if (head.includes('deepseek')) return 'DeepSeek'
   if (head.includes('meituan')) return 'Meituan'
-  return head ? head.charAt(0).toUpperCase() + head.slice(1) : '—'
+  return head ? head.charAt(0).toUpperCase() + head.slice(1) : '-'
 }
 
 function baseName(p) {
@@ -1091,7 +1091,7 @@ async function refreshUsage() {
     const usage = await host.request('session.usage', { session_id: sessionId })
     if (usage && typeof usage === 'object') usageAtom.set({ ...usage })
   } catch (e) {
-    /* gateway without usage for this session — leave the previous snapshot */
+    /* gateway without usage for this session, leave the previous snapshot */
   }
 }
 
@@ -1141,10 +1141,10 @@ function snapshotText(snap) {
   return [
     `${t('status')} · ${activityLabel(snap)}`,
     `${t('model')}: ${shortModel(snap.model)}`,
-    `${t('tokens')}: ${u.total ? fmtTokens(u.total) : '—'}`,
-    `${t('context')}: ${ctxPercent(u) ? `${Math.round(ctxPercent(u))}%` : '—'}`,
+    `${t('tokens')}: ${u.total ? fmtTokens(u.total) : '-'}`,
+    `${t('context')}: ${ctxPercent(u) ? `${Math.round(ctxPercent(u))}%` : '-'}`,
     `${t('cost')}: ${fmtCost(u.cost_usd)}`,
-    `${t('profile')}: ${snap.profile || '—'}`
+    `${t('profile')}: ${snap.profile || '-'}`
   ].join('\n')
 }
 
@@ -1182,7 +1182,7 @@ class Boundary extends Component {
     if (this.state.err) {
       return jsx('div', {
         className: 'mg-say',
-        children: '⚠ mascot-guide error — see devtools'
+        children: '⚠ mascot-guide error, see devtools'
       })
     }
     return this.props.children
@@ -1243,7 +1243,7 @@ function predictEta(u) {
 }
 
 function fmtEta(min) {
-  if (min == null) return '—'
+  if (min == null) return '-'
   if (min >= 90) return `${Math.round(min / 60)}h`
   if (min >= 1) return `${Math.round(min)}m`
   return '<1m'
@@ -1379,25 +1379,25 @@ function StatusCard({ prefs, snap }) {
   const rows = []
 
   if (prefs.showModel && !hideModel) rows.push(['model', shortModel(snap.model)])
-  if (prefs.showTokens && !pills.spend) rows.push(['tokens', u.total ? fmtTokens(u.total) : '—'])
+  if (prefs.showTokens && !pills.spend) rows.push(['tokens', u.total ? fmtTokens(u.total) : '-'])
   if (prefs.showContext && !hideContext) {
     const max = Number(u.context_max) || 0
     rows.push([
       'context',
       contextPct
         ? `${Math.round(contextPct)}%${max ? ` · ${fmtTokens(u.context_used)}/${fmtTokens(max)}` : ''}`
-        : '—'
+        : '-'
     ])
   }
   if (prefs.showCost && !(pills.spend && (prefs.moneySource || 'cost') === 'cost')) rows.push(['cost', fmtCost(u.cost_usd)])
   if (prefs.showActivity) rows.push(['activity', activityLabel(snap)])
   if (prefs.showCache) {
     const hit = Number(u.cache_hit_pct)
-    rows.push(['cache', Number.isFinite(hit) && hit > 0 ? `${Math.round(hit)}%` : '—'])
+    rows.push(['cache', Number.isFinite(hit) && hit > 0 ? `${Math.round(hit)}%` : '-'])
   }
   if (prefs.showProfile) {
-    rows.push(['profile', snap.profile || '—'])
-    rows.push(['cwd', baseName(snap.cwd) || '—'])
+    rows.push(['profile', snap.profile || '-'])
+    rows.push(['cwd', baseName(snap.cwd) || '-'])
   }
 
   return jsxs('div', {
@@ -1487,12 +1487,12 @@ function InfoChips({ snap, prefs: prefsAtom, update }) {
   const items = []
 
   if (show.spend) {
-    const value = source === 'tokens' ? (u.total ? fmtTokens(u.total) : '—') : cost > 0 ? fmtCost(cost) : u.total ? fmtTokens(u.total) : '—'
+    const value = source === 'tokens' ? (u.total ? fmtTokens(u.total) : '-') : cost > 0 ? fmtCost(cost) : u.total ? fmtTokens(u.total) : '-'
     const label = source === 'tokens' ? t('tokensShort') : cost > 0 ? providerLabel(snap.model) : t('tokensShort')
     items.push({ key: 'spend', label, value, onClick: () => update({ moneySource: source === 'cost' ? 'tokens' : 'cost' }) })
   }
   if (show.model) items.push({ key: 'model', label: t('model'), value: shortModel(snap.model) })
-  if (show.context) items.push({ key: 'context', label: t('context'), value: contextPct ? `${contextPct}%` : '—' })
+  if (show.context) items.push({ key: 'context', label: t('context'), value: contextPct ? `${contextPct}%` : '-' })
   if (show.session && mins) {
     items.push({ key: 'session', label: t('session'), value: `${mins}m · ${stats.tools || 0}` })
   }
@@ -1500,14 +1500,14 @@ function InfoChips({ snap, prefs: prefsAtom, update }) {
     items.push({ key: 'eta', label: 'ETA', value: fmtEta(predictEta(u)) })
   }
   if (show.daily) {
-    items.push({ key: 'daily', label: t('cardDaily'), value: daily ? fmtCost(daily) : '—' })
+    items.push({ key: 'daily', label: t('cardDaily'), value: daily ? fmtCost(daily) : '-' })
   }
   if (show.cron) {
-    items.push({ key: 'cron', label: t('cardCron'), value: cronNext ? fmtWhen(cronNext) : '—' })
+    items.push({ key: 'cron', label: t('cardCron'), value: cronNext ? fmtWhen(cronNext) : '-' })
   }
   if (show.cache) {
     const hit = Number(u.cache_hit_pct)
-    items.push({ key: 'cache', label: t('cardCache'), value: Number.isFinite(hit) && hit > 0 ? `${Math.round(hit)}%` : '—' })
+    items.push({ key: 'cache', label: t('cardCache'), value: Number.isFinite(hit) && hit > 0 ? `${Math.round(hit)}%` : '-' })
   }
 
   if (!items.length) return null
@@ -1587,7 +1587,7 @@ function LanguageRow({ prefs: prefsAtom, update }) {
 }
 
 // Edge flood-fill: clears the pixels reachable from the border whose colour
-// sits within `tol` of the sampled corner colour. No ML, no network — it just
+// sits within `tol` of the sampled corner colour. No ML, no network, it just
 // handles the common case (a portrait on a plain background).
 function cutBackground(dataUrl, tol = 34) {
   return new Promise(resolve => {
@@ -2268,7 +2268,7 @@ export default {
         ctx.storage.set('prefs.v4', persisted(prefs.get()))
       } catch (e) {
         try { console.warn('[mascot-guide] storage write failed', e) } catch (_) {}
-        host.notify({ kind: 'error', message: 'Too big to save — pick a smaller file' })
+        host.notify({ kind: 'error', message: 'Too big to save, pick a smaller file' })
       }
     }
 
@@ -2353,7 +2353,7 @@ export default {
       render: () => jsx(MascotFloat, { prefs, update, ctx })
     })
 
-    // `::mascot{note="..."}` — the agent can make the mascot speak in chat
+    // `::mascot{note="..."}`, the agent can make the mascot speak in chat
     // (newer hosts only; older ones ignore an unknown area).
     try {
       ctx.register({
