@@ -39,6 +39,16 @@ Single file. No build step, no dependencies, no network calls.
   auto-cut background for images shot on a plain backdrop.
 - **Seven locales** (EN, ID, ES, PT, JA, ZH, KO, plus *auto* from the system locale), switchable per plugin.
 
+## Disclosure
+
+What the plugin does with your data, in full:
+
+- **No network calls.** Nothing is fetched or sent; the default avatar is embedded in the file as a data URI.
+- **Reads through the gateway RPC only.** It calls `session.usage` and `cron.list` to render the numbers, and `session.compress` / `session.interrupt` when you press those buttons. It does not read files, environment variables or credentials.
+- **Stores preferences in plugin storage.** Colours, size, position, language and an uploaded avatar live in the plugin's own storage key, per profile. Nothing leaves the machine.
+- **No shell, no background processes, no telemetry.**
+- **Desktop surface only** (`desktop/plugin.js`): no agent tools, hooks, middleware or env vars.
+
 ## Install
 
 ```bash

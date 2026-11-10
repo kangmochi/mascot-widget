@@ -1,6 +1,7 @@
 name: mascot-guide
 label: Mascot Widget
 version: 1.0.0
+requires_hermes: ">=0.22.0"
 author: kangmochi
 homepage: https://github.com/kangmochi/mascot-widget
 description: >
