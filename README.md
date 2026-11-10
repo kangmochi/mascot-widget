@@ -6,8 +6,11 @@ numbers you care about one glance away.
 
 Single file. No build step, no dependencies, no network calls.
 
-![Mascot Guide](screenshot.png)
-![Settings](screenshot-settings.png)
+![The mascot while the agent works](docs/shots/working.png)
+
+![The mascot at rest](docs/shots/widget.png)
+
+![Settings: colours, aura and layout](docs/shots/settings.png)
 
 ## What it does
 
@@ -19,9 +22,15 @@ Single file. No build step, no dependencies, no network calls.
 - **Agent Status bubble** — click the mascot: model, tokens, context used/max, session
   cost, activity, prompt-cache hit, plus a tool trail and **Copy status**.
 - **Real actions** — *Compress* runs `session.compress`, *Stop* runs `session.interrupt`.
-- **Settings** — the ⚙ button opens a two-column panel (mascot image, cards, size S/M/L/XL,
-  language, widgets). On desktop builds with plugin settings pages, the same controls also
-  appear under Settings ▸ Plugins ▸ Mascot Guide.
+- **Settings, two depths** — a **Simple** tab (presets, mascot image, size, language) and an
+  **Advanced** tab (cards, colour, position, widgets). On desktop builds with plugin settings
+  pages, the same controls also appear under Settings ▸ Plugins ▸ Mascot Guide.
+- **Colour everything** — pick a colour for the cards, the chat bubble and the aura, from a
+  quick palette or the full picker; text flips to stay readable, and *Theme* puts it back.
+- **Aura glow** — a soft glow while the agent works, sized and coloured to taste, optionally
+  following the avatar's silhouette, with a preview toggle so you can tune it while idle.
+- **Nudge anything** — left/right and up/down offsets for the chat bubble, the cards and the
+  status panel, plus left/right placement for the mascot itself.
 - **Bring your own mascot** — upload any PNG/WebP/JPG/SVG (≤700 KB). Optional
   auto-cut background for images shot on a plain backdrop.
 - **Seven locales** (EN, ID, ES, PT, JA, ZH, KO, plus *auto* from the system locale), switchable per plugin.

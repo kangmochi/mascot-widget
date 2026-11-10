@@ -3,6 +3,9 @@ node_modules/
 .DS_Store
 HANDOFF.md
 
+# generated screenshot pages (capture_shots.py output)
+shot-*.html
+
 # local preview/scratch generators (not shipped)
 colour_demo.py
 colour-demo.html

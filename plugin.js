@@ -1213,9 +1213,6 @@ const CSS = `
 .mg-ring{display:block}
 .mg-spark{display:block;overflow:visible;opacity:.9}
 .mg-mascot-btn{border-radius:50%;isolation:isolate;margin-top:3px}
-.mg-mascot-btn[data-state=busy] img{filter:drop-shadow(0 0 18px color-mix(in srgb,var(--ui-accent) 70%,transparent)) drop-shadow(0 0 42px color-mix(in srgb,var(--ui-accent) 45%,transparent))}
-.mg-mascot-btn[data-state=thinking] img{filter:drop-shadow(0 0 18px color-mix(in srgb,var(--ui-accent) 70%,transparent)) drop-shadow(0 0 42px color-mix(in srgb,var(--ui-accent) 45%,transparent))}
-.mg-mascot-btn[data-state=waiting] img{filter:drop-shadow(0 0 14px color-mix(in srgb,var(--ui-accent) 55%,transparent))}
 .mg-pill{border-radius:10px}
 .mg-pill-v{font-variant-numeric:tabular-nums;letter-spacing:.01em}
 .mg-btn{border-radius:8px;font-weight:600;letter-spacing:.01em;transition:background .15s,color .15s,transform .12s}
