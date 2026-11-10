@@ -121,6 +121,42 @@ const EN = {
   ctxWarn: 'Context almost full, consider compressing',
   close: 'Close',
   tokensShort: 'Tokens',
+  colour: 'Colour',
+  colourHint: 'Pick a colour, or keep it on the theme.',
+  colourCards: 'Cards',
+  colourBubble: 'Chat bubble',
+  colourAura: 'Aura glow',
+  theme: 'Theme',
+  fromAvatar: 'From avatar',
+  auraSize: 'Aura size',
+  auraIntensity: 'Intensity',
+  auraSpeed: 'Speed',
+  auraAlways: 'Keep the glow on while idle',
+  auraSilhouette: 'Glow follows the silhouette',
+  auraVideoHint: 'Video avatars: the soft glow is steadier and cheaper per frame; green-screen edge only wins on still images.',
+  noColour: 'Could not read a colour from that image',
+  simple: 'Simple',
+  advanced: 'Advanced',
+  presets: 'Presets',
+  presetStudio: 'Studio · aura on, 2 cards',
+  presetCalm: 'Calm · no aura, 2 cards',
+  presetMinimal: 'Minimal · no aura, no cards, no bubble',
+  presetHint: 'Presets only touch layout and the aura. Your colours stay.',
+  position: 'Bubble & cards',
+  posHint: 'Nudge the bubble or the cards without moving the mascot.',
+  bubblePos: 'Chat bubble',
+  cardPos: 'Cards',
+  panelPos: 'Status panel',
+  hidePanelSetting: 'Hide the status panel while adjusting',
+  showBubbleSetting: 'Show the chat bubble while adjusting',
+  preview: 'Preview while adjusting',
+  previewAura: 'Show the aura while adjusting',
+  resetPos: 'Reset position',
+  leftRight: 'Left / right',
+  upDown: 'Up / down',
+  avatarPos: 'Avatar position',
+  leftSide: 'Left',
+  rightSide: 'Right',
 }
 
 const IDN = {
@@ -218,6 +254,42 @@ const IDN = {
   tokensShort: 'Token',
   model: 'Model',
   cache: 'Cache',
+  colour: 'Warna',
+  colourHint: 'Pilih warna sendiri, atau biarkan ikut tema.',
+  colourCards: 'Kartu',
+  colourBubble: 'Balon chat',
+  colourAura: 'Cahaya aura',
+  theme: 'Tema',
+  fromAvatar: 'Dari avatar',
+  auraSize: 'Besar aura',
+  auraIntensity: 'Intensitas',
+  auraSpeed: 'Kecepatan',
+  auraAlways: 'Aura tetap nyala saat menganggur',
+  auraSilhouette: 'Aura ikut siluet avatar',
+  auraVideoHint: 'Avatar video: aura lembut lebih stabil dan lebih ringan per frame; tepi siluet cuma bagus buat gambar diam.',
+  noColour: 'Warnanya nggak kebaca dari gambar itu',
+  simple: 'Sederhana',
+  advanced: 'Lanjutan',
+  presets: 'Preset',
+  presetStudio: 'Studio · aura nyala, 2 kartu',
+  presetCalm: 'Tenang · tanpa aura, 2 kartu',
+  presetMinimal: 'Minimal · tanpa aura, tanpa kartu, tanpa balon',
+  presetHint: 'Preset cuma ngatur tata letak dan aura. Warna pilihanmu tetap.',
+  position: 'Geser balon & kartu',
+  posHint: 'Geser balon atau kartu tanpa mindahin maskotnya.',
+  bubblePos: 'Balon chat',
+  cardPos: 'Kartu',
+  panelPos: 'Panel status',
+  hidePanelSetting: 'Sembunyikan panel status saat menyetel',
+  showBubbleSetting: 'Tampilkan balon chat saat menyetel',
+  preview: 'Pratinjau saat menyetel',
+  previewAura: 'Tampilkan aura saat menyetel',
+  resetPos: 'Reset posisi',
+  leftRight: 'Kiri / kanan',
+  upDown: 'Atas / bawah',
+  avatarPos: 'Posisi avatar',
+  leftSide: 'Kiri',
+  rightSide: 'Kanan',
 }
 
 
@@ -712,6 +784,7 @@ const DEFAULTS = {
   pulse: true,
   size: 96,
   zoom: 1,
+  offsetX: 0,
   offsetY: 0,
   speech: true,
   focusUntil: 0,
@@ -729,8 +802,75 @@ const DEFAULTS = {
   showCost: true,
   showActivity: true,
   showProfile: false,
-  showCache: false
+  showCache: false,
+  cardColor: '',
+  cardText: '',
+  bubbleColor: '',
+  bubbleText: '',
+  auraColor: '',
+  auraSize: 26,
+  auraAlpha: 55,
+  auraSpeed: 1.6,
+  auraStyle: 'soft',
+  auraAlways: false,
+  bubbleX: 0,
+  bubbleY: 0,
+  cardX: 0,
+  cardY: 0,
+  panelX: 0,
+  panelY: 0,
+  hidePanelInSettings: false,
+  showBubbleInSettings: false,
+  previewAura: false
 }
+
+/* Presets stay deliberately narrow: layout density and the aura only, so a
+   picked colour is never thrown away by tapping one. */
+const PRESETS = [
+  {
+    key: 'studio',
+    label: 'presetStudio',
+    patch: {
+      size: 96,
+      speech: true,
+      pulse: true,
+      breathing: true,
+      float: false,
+      auraStyle: 'soft',
+      auraAlways: true,
+      auraSize: 26,
+      auraAlpha: 55,
+      auraSpeed: 1.6,
+      pills: { spend: true, model: true, context: false, session: false, eta: false, daily: false, cache: false, cron: false }
+    }
+  },
+  {
+    key: 'calm',
+    label: 'presetCalm',
+    patch: {
+      size: 88,
+      speech: true,
+      pulse: false,
+      auraAlways: false,
+      breathing: false,
+      float: false,
+      pills: { spend: true, model: true, context: false, session: false, eta: false, daily: false, cache: false, cron: false }
+    }
+  },
+  {
+    key: 'minimal',
+    label: 'presetMinimal',
+    patch: {
+      size: 72,
+      speech: false,
+      pulse: false,
+      auraAlways: false,
+      breathing: false,
+      float: false,
+      pills: { spend: false, model: false, context: false, session: false, eta: false, daily: false, cache: false, cron: false }
+    }
+  }
+]
 
 /* ------------------------------------------------------------ formatting */
 
@@ -753,7 +893,8 @@ function shortModel(model) {
   const raw = typeof model === 'string' ? model : model.id || model.name || model.model || ''
   if (!raw) return '-'
   const tail = String(raw).split('/').pop() || String(raw)
-  return tail.length > 28 ? `${tail.slice(0, 27)}…` : tail
+  /* The pill wraps instead of cutting the name; only absurd ids get clipped. */
+  return tail.length > 48 ? `${tail.slice(0, 47)}…` : tail
 }
 
 function providerLabel(model) {
@@ -784,26 +925,156 @@ function ctxPercent(u) {
   return 0
 }
 
+/* --------------------------------------------------------------- colours */
+
+function hexToRgb(hex) {
+  const h = String(hex || '').trim().replace('#', '')
+  const s = h.length === 3 ? h.split('').map(c => c + c).join('') : h
+  if (!/^[0-9a-f]{6}$/i.test(s)) return null
+  return { r: parseInt(s.slice(0, 2), 16), g: parseInt(s.slice(2, 4), 16), b: parseInt(s.slice(4, 6), 16) }
+}
+
+function rgbToHex(r, g, b) {
+  const c = v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')
+  return `#${c(r)}${c(g)}${c(b)}`
+}
+
+/* Text that stays readable on top of a user-picked background. */
+function readableOn(hex) {
+  const c = hexToRgb(hex)
+  if (!c) return ''
+  const lum = (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255
+  return lum > 0.55 ? '#0b0f16' : '#eef2f8'
+}
+
+/* Nudge a colour toward white, for borders on a hand-picked surface. */
+function tint(hex, pct) {
+  const c = hexToRgb(hex)
+  if (!c) return ''
+  return rgbToHex(c.r + (255 - c.r) * pct, c.g + (255 - c.g) * pct, c.b + (255 - c.b) * pct)
+}
+
+/* Average of the colourful pixels: skip white/black/grey so a photo's
+   background does not win over skin/hair/outfit. */
+function colourFromPixels(d) {
+  let r = 0
+  let gg = 0
+  let b = 0
+  let n = 0
+  for (let i = 0; i < d.length; i += 4) {
+    if (d[i + 3] < 48) continue
+    const R = d[i]
+    const G = d[i + 1]
+    const B = d[i + 2]
+    const mx = Math.max(R, G, B)
+    const mn = Math.min(R, G, B)
+    if (mx > 236 && mn > 236) continue
+    if (mx < 28) continue
+    if (mx - mn < 16) continue
+    r += R
+    gg += G
+    b += B
+    n += 1
+  }
+  return n ? rgbToHex(r / n, gg / n, b / n) : ''
+}
+
+function dominantColor(src) {
+  return new Promise(resolve => {
+    try {
+      const img = new Image()
+      img.onload = () => {
+        try {
+          const w = 32
+          const h = 32
+          const canvas = document.createElement('canvas')
+          canvas.width = w
+          canvas.height = h
+          const g = canvas.getContext('2d')
+          g.drawImage(img, 0, 0, w, h)
+          resolve(colourFromPixels(g.getImageData(0, 0, w, h).data))
+        } catch (e) {
+          resolve('')
+        }
+      }
+      img.onerror = () => resolve('')
+      img.src = src
+    } catch (e) {
+      resolve('')
+    }
+  })
+}
+
+/* A video avatar has no <img> to sample: read the hidden <video> frame that
+   VideoArt already renders; blank pixels are skipped like in a photo. */
+function dominantColorFromVideo() {
+  return new Promise(resolve => {
+    try {
+      const v = document.querySelector('.mg-vid-src')
+      if (!v || !v.videoWidth) return resolve('')
+      const w = 32
+      const canvas = document.createElement('canvas')
+      canvas.width = w
+      canvas.height = w
+      const g = canvas.getContext('2d')
+      g.drawImage(v, 0, 0, w, w)
+      resolve(colourFromPixels(g.getImageData(0, 0, w, w).data))
+    } catch (e) {
+      resolve('')
+    }
+  })
+}
+
+/* CSS custom properties applied on the float root; every surface reads them
+   with a theme fallback so an empty value means "follow the theme". */
+function skinVars(prefs) {
+  const v = {}
+  if (prefs.cardColor) {
+    v['--mg-card-bg'] = prefs.cardColor
+    v['--mg-card-bd'] = tint(prefs.cardColor, 0.32)
+  }
+  if (prefs.cardText) v['--mg-card-fg'] = prefs.cardText
+  if (prefs.bubbleColor) {
+    v['--mg-bubble-bg'] = prefs.bubbleColor
+    v['--mg-bubble-bd'] = tint(prefs.bubbleColor, 0.34)
+  }
+  if (prefs.bubbleText) v['--mg-bubble-fg'] = prefs.bubbleText
+  if (prefs.auraColor) v['--mg-aura-c'] = prefs.auraColor
+  const size = Number(prefs.auraSize)
+  v['--mg-aura-r'] = `${Number.isFinite(size) ? Math.max(0, Math.min(120, size)) : 26}px`
+  const alpha = Number(prefs.auraAlpha)
+  const pct = Number.isFinite(alpha) ? Math.max(0, Math.min(100, alpha)) : 55
+  v['--mg-aura-a'] = `${pct}%`
+  v['--mg-aura-o'] = String(pct / 100)
+  const speed = Number(prefs.auraSpeed)
+  v['--mg-aura-t'] = `${Number.isFinite(speed) && speed > 0.2 ? speed : 1.6}s`
+  return v
+}
+
 /* ------------------------------------------------------------------- css */
 
 const CSS = `
-.mg-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end;max-width:250px}
-.mg-pill{cursor:pointer;transition:border-color .15s,transform .12s;display:flex;flex-direction:column;gap:1px;padding:4px 8px;border-radius:8px;border:1px solid var(--ui-stroke-secondary);background:var(--ui-bg-primary,#0f1116);box-shadow:0 6px 16px rgb(0 0 0 / .3);max-width:112px}
+.mg-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end;max-width:268px}
+.mg-pill{cursor:pointer;transition:border-color .15s,transform .12s;display:flex;flex-direction:column;gap:1px;padding:4px 8px;border-radius:8px;border:1px solid var(--mg-card-bd,var(--ui-stroke-secondary));background:var(--mg-card-bg,var(--ui-bg-primary,#0f1116));box-shadow:0 6px 16px rgb(0 0 0 / .3);max-width:112px}
 .mg-pill:hover{border-color:var(--ui-accent);transform:translateY(-1px)}
-.mg-pill-k{font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-text-quaternary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mg-pill-v{font-size:11px;font-weight:700;color:var(--ui-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mg-pill[data-wide=true]{max-width:100%;flex:0 1 auto}
+.mg-pill[data-wide=true] .mg-pill-v{white-space:normal;overflow-wrap:anywhere;line-height:1.3}
+.mg-pill-k{font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--mg-card-fg,var(--ui-text-quaternary)) 62%,transparent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mg-pill-v{font-size:11px;font-weight:700;color:var(--mg-card-fg,var(--ui-text-primary));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mg-stack{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
 .mg-under{display:flex;align-items:flex-end;gap:6px}
 .mg-gear{width:24px;height:24px;border-radius:7px;border:1px solid var(--ui-stroke-secondary);background:var(--ui-bg-primary,#0f1116);color:var(--ui-text-tertiary);font-size:12px;cursor:pointer;line-height:1}
 .mg-gear:hover{color:var(--ui-text-primary);border-color:var(--ui-accent)}
+.mg-modal[data-side=right]{left:auto;right:calc(100% + 12px)}
 .mg-modal{position:absolute;left:0;bottom:0;left:calc(100% + 12px);width:380px;max-height:64vh;overflow:auto;border:1px solid color-mix(in srgb,var(--ui-accent) 25%,var(--ui-stroke-secondary));border-radius:14px;background:#0f1520;box-shadow:0 22px 54px rgb(0 0 0 / .55);padding:12px;z-index:2147483100}
 .mg-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .mg-modal-actions{display:flex;align-items:center;gap:6px}
 .mg-modal-close{flex:none;padding:3px 12px;color:#e6e9ef;border-color:#2b3446;background:#151b26}
 .mg-x{width:24px;height:24px;flex:none;border-radius:6px;border:1px solid #2b3446;background:#151b26;color:#e6e9ef;font-size:12px;line-height:1;cursor:pointer}
 .mg-x:hover{color:#fff;border-color:var(--ui-accent);background:#1c2431}
-.mg-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mg-modal-grid{display:grid;grid-template-columns:1fr;gap:8px}
 .mg-modal-grid>div:first-child{grid-column:1 / -1}
+.mg-single{grid-template-columns:1fr}
 .mg-tabs{display:flex;gap:4px;margin:2px 0 4px}
 .mg-tab{flex:1;font-size:11px;padding:5px 8px;border-radius:7px;border:1px solid var(--ui-stroke-secondary);background:transparent;color:var(--ui-text-secondary);cursor:pointer}
 .mg-tab[data-on=true]{background:var(--ui-accent);border-color:var(--ui-accent);color:#fff}
@@ -817,6 +1088,14 @@ const CSS = `
 .mg-keyrow{display:flex;gap:6px;margin-top:4px;align-items:center}
 .mg-file{flex:1;min-width:0;font-size:10px;color:var(--ui-text-tertiary)}
 .mg-file::file-selector-button{font-size:10px;padding:3px 7px;margin-right:6px;border-radius:6px;border:1px solid var(--ui-stroke-secondary);background:transparent;color:var(--ui-text-secondary);cursor:pointer}
+.mg-colour{width:32px;height:24px;flex:none;padding:0;border:1px solid var(--ui-stroke-secondary);border-radius:6px;background:transparent;cursor:pointer}
+.mg-colour::-webkit-color-swatch-wrapper{padding:0}
+.mg-colour::-webkit-color-swatch{border:none;border-radius:5px}
+.mg-colour-row{display:flex;align-items:center;gap:6px;margin-top:3px;font-size:11px;color:var(--ui-text-tertiary)}
+.mg-colour-row>span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mg-swatches{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 6px}
+.mg-swatch{width:16px;height:16px;padding:0;border-radius:5px;border:1px solid var(--ui-stroke-secondary);cursor:pointer}
+.mg-swatch:hover{border-color:var(--ui-accent);transform:scale(1.08)}
 .mg-trail{display:flex;gap:4px;margin-top:6px}
 .mg-trail-dot{width:6px;height:6px;border-radius:50%;background:var(--ui-stroke-secondary)}
 .mg-trail-dot[data-kind=terminal]{background:#22c55e}
@@ -824,14 +1103,14 @@ const CSS = `
 .mg-trail-dot[data-kind=file]{background:#f59e0b}
 .mg-trail-dot[data-kind=media]{background:#c084fc}
 .mg-trail-dot[data-recent=true]{box-shadow:0 0 0 2px color-mix(in srgb,var(--ui-accent) 55%,transparent)}
-.mg-say{position:relative;max-width:320px;min-width:215px;padding:8px 12px;border-radius:19px;border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary));background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 84%,transparent);color:var(--ui-text-secondary);font-size:11px;line-height:1.4;z-index:1;box-shadow:0 10px 24px rgb(0 0 0 / .35)}
-.mg-say[data-state=busy]{color:var(--ui-text-primary)}
+.mg-say{position:relative;max-width:320px;min-width:215px;padding:8px 12px;border-radius:19px;border:1px solid var(--mg-bubble-bd,color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary)));background:var(--mg-bubble-bg,color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 84%,transparent));color:var(--mg-bubble-fg,var(--ui-text-secondary));font-size:11px;line-height:1.4;z-index:1;box-shadow:0 10px 24px rgb(0 0 0 / .35)}
+.mg-say[data-state=busy]{color:var(--mg-bubble-fg,var(--ui-text-primary))}
 .mg-say-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:-3px}
 .mg-d1{width:13px;height:13px;margin-left:6px}
 .mg-d2{width:10px;height:10px;margin-left:14px}
 .mg-d3{width:13px;height:13px;margin-left:6px}
 .mg-d4{width:7px;height:7px;margin-left:14px}
-.mg-say-dot{display:block;border-radius:50%;background:var(--ui-bg-primary,#0b0f16);border:1.5px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
+.mg-say-dot{display:block;border-radius:50%;background:var(--mg-bubble-bg,var(--ui-bg-primary,#0b0f16));border:1.5px solid var(--mg-bubble-bd,color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary)))}
 
   background:color-mix(in srgb,var(--ui-bg-primary,#0b0f16) 82%,transparent);
   border:1px solid color-mix(in srgb,var(--ui-accent) 22%,var(--ui-stroke-secondary))}
@@ -846,8 +1125,19 @@ const CSS = `
 .mg-float>*{pointer-events:auto}
 .mg-mascot-btn{position:relative;width:var(--mg-size,96px);height:var(--mg-size,96px);padding:0;border:0;background:transparent;cursor:pointer;filter:drop-shadow(0 6px 16px rgb(0 0 0 / .45));transition:transform .12s}
 .mg-mascot-btn:hover{transform:scale(1.04)}
-.mg-mascot-btn[data-state=busy],.mg-mascot-btn[data-state=thinking]{box-shadow:0 0 26px color-mix(in srgb,var(--ui-accent) 55%,transparent),0 0 54px color-mix(in srgb,var(--ui-accent) 30%,transparent)}
-.mg-mascot-btn[data-state=waiting]{box-shadow:0 0 18px color-mix(in srgb,var(--ui-accent) 35%,transparent)}
+.mg-stage{position:relative;width:100%;height:100%}
+.mg-mascot-btn[data-state=idle] .mg-aura,.mg-mascot-btn[data-state=waiting] .mg-aura{opacity:calc(var(--mg-aura-o,.55) * .5)}
+.mg-aura{position:absolute;left:50%;top:50%;z-index:0;pointer-events:none;border-radius:50%;
+  width:calc(100% + var(--mg-aura-r,26px) * 2.2);height:calc(100% + var(--mg-aura-r,26px) * 2.2);
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,var(--mg-aura-c,var(--ui-accent)) 0%,var(--mg-aura-c,var(--ui-accent)) 38%,transparent 72%);
+  opacity:var(--mg-aura-o,.55);filter:blur(calc(var(--mg-aura-r,26px) * .28));
+  -webkit-mask-image:radial-gradient(circle,#000 55%,transparent 78%);mask-image:radial-gradient(circle,#000 55%,transparent 78%);
+  animation:mg-aura-breathe var(--mg-aura-t,1.6s) ease-in-out infinite}
+@keyframes mg-aura-breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.09)}}
+.mg-mascot-btn[data-aura-style=silhouette][data-aura=true][data-state=busy] .mg-art,.mg-mascot-btn[data-aura-style=silhouette][data-aura=true][data-state=thinking] .mg-art{filter:drop-shadow(0 0 calc(var(--mg-aura-r,26px) * .45) var(--mg-aura-c,var(--ui-accent))) drop-shadow(0 0 var(--mg-aura-r,26px) color-mix(in srgb,var(--mg-aura-c,var(--ui-accent)) var(--mg-aura-a,55%),transparent))}
+.mg-mascot-btn[data-aura-style=silhouette] .mg-aura{display:none}
+.mg-mascot-btn[data-preview=true][data-aura=true][data-aura-style=silhouette] .mg-art{filter:drop-shadow(0 0 calc(var(--mg-aura-r,26px) * .45) var(--mg-aura-c,var(--ui-accent))) drop-shadow(0 0 var(--mg-aura-r,26px) color-mix(in srgb,var(--mg-aura-c,var(--ui-accent)) var(--mg-aura-a,55%),transparent))}
 .mg-vidwrap{position:absolute;inset:0;overflow:hidden}
 .mg-vid-src{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;pointer-events:none}
 .mg-vid-canvas{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
@@ -856,14 +1146,18 @@ const CSS = `
 .mg-mascot-btn img{width:100%;height:100%;object-fit:contain;display:block}
 .mg-mascot-btn[data-breath=true][data-state=busy] img{animation:mg-breath 3.6s ease-in-out infinite}
 .mg-mascot-btn[data-breath=true][data-float=true][data-state=busy] img{animation:mg-breath 3.6s ease-in-out infinite,mg-float 5.2s ease-in-out infinite}
-.mg-mascot-btn[data-state=busy][data-pulse=true] img{animation:mg-pulse 1.6s ease-in-out infinite}
+.mg-mascot-btn[data-state=busy][data-pulse=true] img{animation:mg-pulse var(--mg-aura-t,1.6s) ease-in-out infinite}
 @keyframes mg-breath{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 @keyframes mg-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes mg-pulse{0%,100%{opacity:1}50%{opacity:.78}}
 .mg-dot{width:8px;height:8px;border-radius:50%;background:var(--ui-text-quaternary);display:inline-block}
 .mg-dot[data-state=busy]{background:var(--ui-accent)}
 .mg-dot[data-state=waiting]{background:var(--ui-accent);opacity:.6}
-.mg-bubble{width:300px;max-height:70vh;overflow:auto;border:1px solid var(--ui-stroke-secondary);border-radius:12px;background:var(--ui-bg-primary,#0f1116);box-shadow:0 18px 40px rgb(0 0 0 / .5);padding:10px;font-size:12px;color:var(--ui-text-secondary);box-sizing:border-box}
+.mg-bubble{width:300px;max-height:70vh;overflow:auto;border:1px solid var(--mg-card-bd,var(--ui-stroke-secondary));border-radius:12px;background:var(--mg-card-bg,var(--ui-bg-primary,#0f1116));box-shadow:0 18px 40px rgb(0 0 0 / .5);padding:10px;font-size:12px;color:var(--mg-card-fg,var(--ui-text-secondary));box-sizing:border-box}
+.mg-bubble .mg-card-h{color:var(--mg-card-fg,var(--ui-text-primary))}
+.mg-bubble .mg-row>span:first-child{color:color-mix(in srgb,var(--mg-card-fg,var(--ui-text-tertiary)) 70%,transparent)}
+.mg-bubble .mg-row>b{color:var(--mg-card-fg,var(--ui-text-primary))}
+.mg-bubble .mg-muted{color:color-mix(in srgb,var(--mg-card-fg,var(--ui-text-quaternary)) 78%,transparent)}
 .mg-card-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:600;color:var(--ui-text-primary);font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:7px}
 .mg-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:2px 0;min-width:0}
 .mg-row>span:first-child{color:var(--ui-text-tertiary);flex:none}
@@ -872,9 +1166,8 @@ const CSS = `
 .mg-actions{display:flex;gap:6px;margin-top:8px}
 .mg-btn{flex:1;font-size:11px;padding:5px 8px;border-radius:7px;border:1px solid var(--ui-stroke-secondary);background:transparent;color:var(--ui-text-secondary);cursor:pointer}
 .mg-btn:hover{background:var(--chrome-action-hover);color:var(--ui-text-primary)}
-.mg-sizes{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
-.mg-size{min-width:34px}
-.mg-size{flex:1;font-size:11px;padding:4px 0;border-radius:6px;border:1px solid var(--ui-stroke-secondary);background:transparent;color:var(--ui-text-secondary);cursor:pointer}
+.mg-sizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(36px,1fr));gap:6px;margin-top:2px}
+.mg-size{min-width:0;font-size:11px;padding:4px 0;border-radius:6px;border:1px solid var(--ui-stroke-secondary);background:transparent;color:var(--ui-text-secondary);cursor:pointer}
 .mg-size[data-on=true]{background:var(--ui-accent);border-color:var(--ui-accent);color:#fff}
 .mg-alert{display:flex;gap:6px;align-items:flex-start;margin-top:8px;padding:6px 8px;border-radius:8px;border:1px solid #ef4444;color:#fca5a5;font-size:11px;line-height:1.35}
 .mg-recent b{font-weight:500;color:var(--ui-text-tertiary)}
@@ -892,11 +1185,23 @@ const CSS = `
 
 /* ---- premium pass: glass, motion, gauges ---- */
 .mg-bubble,.mg-modal,.mg-say,.mg-pill,.mg-sec-card{
-  background:color-mix(in srgb, var(--ui-bg-primary,#0b0f16) 78%, transparent);
   -webkit-backdrop-filter:blur(16px) saturate(1.25);
   backdrop-filter:blur(16px) saturate(1.25);
-  border:1px solid color-mix(in srgb, var(--ui-accent) 22%, var(--ui-stroke-secondary));
   box-shadow:0 18px 44px rgb(0 0 0 / .45),inset 0 1px 0 rgb(255 255 255 / .05);
+}
+/* A hand-picked surface colour wins over the theme glass; nothing set means
+   the exact glass look the widget shipped with. */
+.mg-pill,.mg-bubble{
+  background:var(--mg-card-bg,color-mix(in srgb, var(--ui-bg-primary,#0b0f16) 78%, transparent));
+  border:1px solid var(--mg-card-bd,color-mix(in srgb, var(--ui-accent) 22%, var(--ui-stroke-secondary)));
+}
+.mg-say{
+  background:var(--mg-bubble-bg,color-mix(in srgb, var(--ui-bg-primary,#0b0f16) 78%, transparent));
+  border:1px solid var(--mg-bubble-bd,color-mix(in srgb, var(--ui-accent) 22%, var(--ui-stroke-secondary)));
+}
+.mg-modal,.mg-sec-card{
+  background:color-mix(in srgb, var(--ui-bg-primary,#0b0f16) 78%, transparent);
+  border:1px solid color-mix(in srgb, var(--ui-accent) 22%, var(--ui-stroke-secondary));
 }
 .mg-bubble,.mg-modal{animation:mg-in .22s cubic-bezier(.2,.8,.2,1)}
 @keyframes mg-in{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
@@ -1057,11 +1362,14 @@ function useDaily() {
 
 const storageRef = { current: { get: () => null, set: () => {} } }
 
-function pushActivity(label, countTool) {
-  if (!label) return
-  const prev = activityAtom.get() || { current: '', items: [] }
-  const items = [{ label, at: Date.now() }, ...(prev.items || [])].slice(0, 4)
-  activityAtom.set({ current: label, items })
+/* Entries keep a KEY (or a raw tool name), never a translated string: the
+   bubble must re-translate when the user switches language mid-session. */
+function pushActivity(entry, countTool) {
+  if (!entry) return
+  const prev = activityAtom.get() || { current: null, items: [] }
+  const item = { ...entry, at: Date.now() }
+  const items = [item, ...(prev.items || [])].slice(0, 4)
+  activityAtom.set({ current: item, items })
   if (countTool) {
     const stats = statsAtom.get() || { startedAt: Date.now(), tools: 0 }
     const startedAt = stats.startedAt || Date.now()
@@ -1069,12 +1377,23 @@ function pushActivity(label, countTool) {
   }
 }
 
-function toolLabel(payload) {
+function toolName(payload) {
   const d = (payload && payload.data) || payload || {}
-  const name = d.tool || d.name || d.tool_name || d.toolName || ''
+  return String(d.tool || d.name || d.tool_name || d.toolName || '')
+}
+
+function prettyTool(name) {
   if (!name) return ''
   const pretty = String(name).replace(/[_-]/g, ' ')
   return pretty.length > 22 ? `${pretty.slice(0, 21)}…` : pretty
+}
+
+function activityText(entry) {
+  if (!entry) return ''
+  if (typeof entry === 'string') return entry
+  if (entry.key) return t(entry.key)
+  if (entry.tool) return prettyTool(entry.tool)
+  return ''
 }
 
 function applyUsage(payload) {
@@ -1360,14 +1679,17 @@ function VideoArt({ src }) {
   })
 }
 
-function MascotArt({ size }) {
-  const p = (prefsRef.current && prefsRef.current.get && prefsRef.current.get()) || {}
+function artTransform(p) {
   const zoom = Number(p.zoom) || 1
+  const offsetX = Number(p.offsetX) || 0
   const offsetY = Number(p.offsetY) || 0
-  const style = zoom !== 1 || offsetY !== 0
-    ? { transform: `translateY(${offsetY}%) scale(${zoom})`, transformOrigin: 'center' }
-    : undefined
-  return jsx('div', { className: 'mg-art', style, children: RawArt({ size }) })
+  if (zoom === 1 && offsetX === 0 && offsetY === 0) return undefined
+  return { transform: `translate(${offsetX}%, ${offsetY}%) scale(${zoom})`, transformOrigin: 'center' }
+}
+
+function MascotArt({ size, bare }) {
+  const p = (prefsRef.current && prefsRef.current.get && prefsRef.current.get()) || {}
+  return jsx('div', { className: 'mg-art', style: bare ? undefined : artTransform(p), children: RawArt({ size }) })
 }
 
 function RawArt({ size }) {
@@ -1467,14 +1789,15 @@ function fmtClock(ms) {
 
 function speechLine(snap, prefs) {
   const pct = Math.round(ctxPercent(snap.usage))
-  const feed = activityAtom.get() || { current: '' }
+  const feed = activityAtom.get() || { current: null }
+  const now = activityText(feed.current)
   if (pct >= 80) return t('sayFull').replace('{0}', String(pct))
   const live = liveState()
   if (live === 'thinking') return pick([t('sayThink'), t('sayThink2'), t('sayThink3')])
-  if (live === 'busy') return feed.current ? t('sayBusy').replace('{0}', feed.current) : pick([t('sayThink'), t('sayThink2'), t('sayThink3')])
+  if (live === 'busy') return now ? t('sayBusy').replace('{0}', now) : pick([t('sayThink'), t('sayThink2'), t('sayThink3')])
   if (live === 'waiting') return pick([t('sayWaiting'), t('sayWaiting2'), t('sayWaiting3')])
   if (snap.busy && snap.awaiting) return pick([t('sayThink'), t('sayThink2'), t('sayThink3')])
-  if (snap.busy) return feed.current ? t('sayBusy').replace('{0}', feed.current) : pick([t('sayThink'), t('sayThink2'), t('sayThink3')])
+  if (snap.busy) return now ? t('sayBusy').replace('{0}', now) : pick([t('sayThink'), t('sayThink2'), t('sayThink3')])
   const done = lastDoneAtom.get()
   if (done && Date.now() - done < 60000) return pick([t('sayWaiting'), t('sayWaiting2'), t('sayWaiting3')])
   return pick([t('sayIdle'), t('sayIdle2'), t('sayIdle3')])
@@ -1499,7 +1822,7 @@ function InfoChips({ snap, prefs: prefsAtom, update }) {
     const label = source === 'tokens' ? t('tokensShort') : cost > 0 ? providerLabel(snap.model) : t('tokensShort')
     items.push({ key: 'spend', label, value, onClick: () => update({ moneySource: source === 'cost' ? 'tokens' : 'cost' }) })
   }
-  if (show.model) items.push({ key: 'model', label: t('model'), value: shortModel(snap.model) })
+  if (show.model) items.push({ key: 'model', label: t('model'), value: shortModel(snap.model), wide: true })
   if (show.context) items.push({ key: 'context', label: t('context'), value: contextPct ? `${contextPct}%` : '-' })
   if (show.session && mins) {
     items.push({ key: 'session', label: t('session'), value: `${mins}m · ${stats.tools || 0}` })
@@ -1527,6 +1850,7 @@ function InfoChips({ snap, prefs: prefsAtom, update }) {
         'div',
         {
           className: 'mg-pill',
+          'data-wide': item.wide ? 'true' : undefined,
           role: item.onClick ? 'button' : undefined,
           onClick: item.onClick,
           title: `${item.label} ${item.value}`,
@@ -1538,6 +1862,243 @@ function InfoChips({ snap, prefs: prefsAtom, update }) {
         item.key
       )
     )
+  })
+}
+
+function PresetRow({ prefs: prefsAtom, update }) {
+  return jsxs('div', {
+    children: [
+      jsx('div', { className: 'mg-muted', children: t('presetHint') }),
+      PRESETS.map(p =>
+        jsx(
+          'button',
+          {
+            className: 'mg-btn',
+            type: 'button',
+            style: { width: '100%', textAlign: 'left', marginTop: '5px' },
+            onClick: () => update(p.patch),
+            children: t(p.label)
+          },
+          p.key
+        )
+      )
+    ]
+  })
+}
+
+function PositionRow({ prefs: prefsAtom, update }) {
+  const prefs = useValue(prefsAtom)
+  const slider = (label, key) =>
+    jsxs('div', {
+      className: 'mg-slider',
+      children: [
+        jsx('span', { children: label }),
+        jsx('input', {
+          type: 'range',
+          min: '-120',
+          max: '120',
+          step: '2',
+          value: String(Number(prefs[key]) || 0),
+          onChange: e => update({ [key]: Number(e.target.value) })
+        }),
+        jsx('b', { children: `${Number(prefs[key]) || 0}px` })
+      ]
+    })
+  return jsxs('div', {
+    children: [
+      jsx('div', { className: 'mg-muted', children: t('posHint') }),
+      jsx('div', { className: 'mg-muted', children: t('bubblePos') }),
+      slider(t('leftRight'), 'bubbleX'),
+      slider(t('upDown'), 'bubbleY'),
+      jsx('div', { className: 'mg-muted', children: t('cardPos') }),
+      slider(t('leftRight'), 'cardX'),
+      slider(t('upDown'), 'cardY'),
+      jsx('div', {
+        className: 'mg-actions',
+        children: jsx('button', {
+          className: 'mg-btn',
+          type: 'button',
+          onClick: () => update({ bubbleX: 0, bubbleY: 0, cardX: 0, cardY: 0, panelX: 0, panelY: 0 }),
+          children: t('resetPos')
+        })
+      })
+    ]
+  })
+}
+
+const PALETTE = ['#4c8dff', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#14b8a6', '#64748b', '#e5e7eb']
+
+function PreviewRow({ prefs: prefsAtom, update }) {
+  const prefs = useValue(prefsAtom)
+  return jsxs('div', {
+    children: [
+      jsx('div', { className: 'mg-muted', children: t('posHint') }),
+      jsx(Toggle, {
+        label: t('hidePanelSetting'),
+        on: Boolean(prefs.hidePanelInSettings),
+        onChange: on => update({ hidePanelInSettings: on })
+      }),
+      jsx(Toggle, {
+        label: t('showBubbleSetting'),
+        on: Boolean(prefs.showBubbleInSettings),
+        onChange: on => update({ showBubbleInSettings: on })
+      }),
+      jsx(Toggle, {
+        label: t('previewAura'),
+        on: Boolean(prefs.previewAura),
+        onChange: on => update({ previewAura: on })
+      })
+    ]
+  })
+}
+
+function PanelPosRow({ prefs: prefsAtom, update }) {
+  const prefs = useValue(prefsAtom)
+  const slider = (label, key) =>
+    jsxs('div', {
+      className: 'mg-slider',
+      children: [
+        jsx('span', { children: label }),
+        jsx('input', {
+          type: 'range',
+          min: '-120',
+          max: '120',
+          step: '2',
+          value: String(Number(prefs[key]) || 0),
+          onChange: e => update({ [key]: Number(e.target.value) })
+        }),
+        jsx('b', { children: `${Number(prefs[key]) || 0}px` })
+      ]
+    })
+  return jsxs('div', {
+    children: [
+      jsx('div', { className: 'mg-muted', children: t('posHint') }),
+      slider(t('leftRight'), 'panelX'),
+      slider(t('upDown'), 'panelY'),
+      jsx('div', {
+        className: 'mg-actions',
+        children: jsx('button', {
+          className: 'mg-btn',
+          type: 'button',
+          onClick: () => update({ panelX: 0, panelY: 0 }),
+          children: t('resetPos')
+        })
+      })
+    ]
+  })
+}
+
+function Swatch({ value, fallback, onChange }) {
+  return jsxs('div', {
+    children: [
+      jsxs('div', {
+        className: 'mg-colour-row',
+        children: [
+          jsx('input', {
+            className: 'mg-colour',
+            type: 'color',
+            value: value || fallback || '#4c8dff',
+            onChange: e => onChange(e.target.value)
+          }),
+          jsx('span', { children: value ? String(value).toUpperCase() : t('theme') }),
+          jsx('button', {
+            className: 'mg-btn',
+            type: 'button',
+            style: { flex: 'none', padding: '3px 8px' },
+            onClick: () => onChange(''),
+            children: t('theme')
+          })
+        ]
+      }),
+      jsx('div', {
+        className: 'mg-swatches',
+        children: PALETTE.map(hex =>
+          jsx(
+            'button',
+            {
+              className: 'mg-swatch',
+              type: 'button',
+              title: hex,
+              'data-on': String((value || '').toLowerCase() === hex),
+              style: { background: hex, outline: (value || '').toLowerCase() === hex ? '2px solid var(--ui-accent)' : 'none' },
+              onClick: () => onChange(hex)
+            },
+            hex
+          )
+        )
+      })
+    ]
+  })
+}
+
+function ColourRow({ prefs: prefsAtom, update }) {
+  const prefs = useValue(prefsAtom)
+  /* A video avatar is re-keyed every frame; a silhouette drop-shadow would be
+     recomputed per frame and collapses to a box on non-green-screen footage. */
+  const isVideo = /^data:video\//.test(String(prefs.image || ''))
+
+  const setSurface = (key, value) => {
+    const patch = { [key]: value }
+    if (value) patch[key === 'bubbleColor' ? 'bubbleText' : 'cardText'] = readableOn(value)
+    else patch[key === 'bubbleColor' ? 'bubbleText' : 'cardText'] = ''
+    update(patch)
+  }
+
+  const slider = (label, key, min, max, step, fmt) =>
+    jsxs('div', {
+      className: 'mg-slider',
+      children: [
+        jsx('span', { children: label }),
+        jsx('input', {
+          type: 'range',
+          min: String(min),
+          max: String(max),
+          step: String(step),
+          value: String(prefs[key]),
+          onChange: e => update({ [key]: Number(e.target.value) })
+        }),
+        jsx('b', { children: fmt(Number(prefs[key])) })
+      ]
+    })
+
+  return jsxs('div', {
+    children: [
+      jsx('div', { className: 'mg-muted', children: t('colourHint') }),
+      jsx('div', { className: 'mg-muted', children: t('colourCards') }),
+      jsx(Swatch, { value: prefs.cardColor, fallback: '#0f1116', onChange: v => setSurface('cardColor', v) }),
+      jsx('div', { className: 'mg-muted', children: t('colourBubble') }),
+      jsx(Swatch, { value: prefs.bubbleColor, fallback: '#131a24', onChange: v => setSurface('bubbleColor', v) }),
+      jsx('div', { className: 'mg-muted', children: t('colourAura') }),
+      jsx(Swatch, { value: prefs.auraColor, fallback: '#4c8dff', onChange: v => update({ auraColor: v }) }),
+      jsx('div', {
+        className: 'mg-actions',
+        children: jsx('button', {
+          className: 'mg-btn',
+          type: 'button',
+          onClick: async () => {
+            const src = userImage()
+            const c = /^data:video\//.test(src) ? await dominantColorFromVideo() : await dominantColor(src)
+            if (c) update({ auraColor: c })
+            else host.notify({ kind: 'info', message: t('noColour') })
+          },
+          children: t('fromAvatar')
+        })
+      }),
+      jsx(Toggle, {
+        label: t('auraAlways'),
+        on: Boolean(prefs.auraAlways),
+        onChange: on => update({ auraAlways: on })
+      }),
+      jsx(Toggle, {
+        label: t('auraSilhouette'),
+        on: prefs.auraStyle === 'silhouette',
+        onChange: on => update({ auraStyle: on ? 'silhouette' : 'soft' })
+      }),
+      isVideo ? jsx('div', { className: 'mg-muted', children: t('auraVideoHint') }) : null,
+      slider(t('auraSize'), 'auraSize', 0, 80, 1, v => `${v}px`),
+      slider(t('auraIntensity'), 'auraAlpha', 0, 100, 5, v => `${v}%`),
+      slider(t('auraSpeed'), 'auraSpeed', 0.6, 4, 0.1, v => `${v.toFixed(1)}s`)
+    ]
   })
 }
 
@@ -1676,7 +2237,7 @@ function ImageSetup({ prefs: prefsAtom, update }) {
       const url = String(reader.result || '')
       if (!/^data:(image|video)\//.test(url)) return
       const finalUrl = prefs.cutout && !/gif|apng|video/.test(file.type) ? await cutBackground(url) : url
-      update({ image: finalUrl })
+      update(video ? { image: finalUrl, auraStyle: 'soft' } : { image: finalUrl })
     }
     reader.readAsDataURL(file)
   }
@@ -1732,7 +2293,19 @@ function ImageSetup({ prefs: prefsAtom, update }) {
       jsxs('div', {
         className: 'mg-slider',
         children: [
-          jsx('span', { children: t('offset') }),
+          jsx('span', { children: t('leftRight') }),
+          jsx('input', {
+            type: 'range', min: '-40', max: '40', step: '1',
+            value: String(prefs.offsetX || 0),
+            onChange: e => update({ offsetX: Number(e.target.value) })
+          }),
+          jsx('b', { children: `${Number(prefs.offsetX) || 0}%` })
+        ]
+      }),
+      jsxs('div', {
+        className: 'mg-slider',
+        children: [
+          jsx('span', { children: t('upDown') }),
           jsx('input', {
             type: 'range', min: '-40', max: '40', step: '1',
             value: String(prefs.offsetY || 0),
@@ -1751,8 +2324,11 @@ function Speech({ snap, prefs }) {
   useValue(focusTickAtom)
   if (!prefs.speech) return null
   const focusLeft = focusRemaining(prefs)
+  const dx = Number(prefs.bubbleX) || 0
+  const dy = Number(prefs.bubbleY) || 0
   return jsxs('div', {
     className: 'mg-say-wrap',
+    style: dx || dy ? { transform: `translate(${dx}px, ${dy}px)` } : undefined,
     children: [
       jsx('div', {
         className: 'mg-say',
@@ -1789,20 +2365,6 @@ function Actions({ snap, ctx, prefs: prefsAtom, update }) {
     host.notify({ kind: 'info', message: t('focus') })
   }
 
-  const speak = () => {
-    try {
-      const synth = window.speechSynthesis
-      if (!synth) return
-      if (synth.speaking) {
-        synth.cancel()
-        return
-      }
-      const utter = new SpeechSynthesisUtterance(snapshotText(snap))
-      utter.lang = (prefs.language === 'id' ? 'id-ID' : prefs.language === 'ja' ? 'ja-JP' : prefs.language === 'zh' ? 'zh-CN' : prefs.language === 'ko' ? 'ko-KR' : prefs.language === 'es' ? 'es-ES' : prefs.language === 'pt' ? 'pt-BR' : 'en-US')
-      synth.speak(utter)
-    } catch (e) {}
-  }
-
   const busy = Boolean(snap.busy)
   const sessionId = activeSessionId()
 
@@ -1825,12 +2387,6 @@ function Actions({ snap, ctx, prefs: prefsAtom, update }) {
         type: 'button',
         onClick: toggleFocus,
         children: focusLeft ? fmtClock(focusLeft) : t('focus')
-      }),
-      jsx('button', {
-        className: 'mg-btn',
-        type: 'button',
-        onClick: speak,
-        children: t('speak')
       }),
       jsx('button', {
         className: 'mg-btn',
@@ -1866,17 +2422,17 @@ function ToolTrail({ snap }) {
   return jsx('div', {
     className: 'mg-trail',
     children: items.map((item, i) =>
-      jsx('span', { className: 'mg-trail-dot', title: item.label, 'data-kind': toolKind(item.label), 'data-recent': String(i === 0) }, `${item.at}-${i}`)
+      jsx('span', { className: 'mg-trail-dot', title: activityText(item), 'data-kind': toolKind(item.tool || activityText(item)), 'data-recent': String(i === 0) }, `${item.at}-${i}`)
     )
   })
 }
 
 function ActivityBlock({ snap }) {
-  const feed = useValue(activityAtom) || { current: '', items: [] }
+  const feed = useValue(activityAtom) || { current: null, items: [] }
   const stats = useValue(statsAtom) || { startedAt: 0, tools: 0 }
   const mins = stats.startedAt ? Math.max(1, Math.round((Date.now() - stats.startedAt) / 60000)) : 0
   const statsText = mins ? `${mins}m · ${stats.tools || 0} ${t('tools')}` : ''
-  const live = snap.busy ? feed.current : ''
+  const live = snap.busy ? activityText(feed.current) : ''
   if (!live && !(feed.items || []).length) return null
 
   return jsxs('div', {
@@ -1904,7 +2460,7 @@ function ActivityBlock({ snap }) {
       (feed.items || []).slice(0, 3).map((item, i) =>
         jsxs(
           'div',
-          { className: 'mg-row mg-recent', children: [jsx('span', { children: i === 0 ? t('recent') : '' }), jsx('b', { children: item.label })] },
+          { className: 'mg-row mg-recent', children: [jsx('span', { children: i === 0 ? t('recent') : '' }), jsx('b', { children: activityText(item) })] },
           `${item.at}-${i}`
         )
       )
@@ -1923,6 +2479,15 @@ function ContextAlert({ snap }) {
 
 function SizeRow({ prefs, update }) {
   const options = [[72, 'S'], [96, 'M'], [128, 'L'], [160, 'XL']]
+  const size = Number(prefs.size) || 96
+  const viewport = typeof window !== 'undefined' ? Number(window.innerWidth) || 1280 : 1280
+  const onRight = (Number(prefs.posX) || 20) > viewport / 2 - 40
+  /* Setting the atom as well as the pref, so the float moves without a restart. */
+  const place = x => {
+    const next = Math.max(12, Math.round(x))
+    posAtom.set({ x: next, y: Number(prefs.posY) || 58 })
+    update({ posX: next })
+  }
   return jsxs('div', {
     children: [
       jsx('div', { className: 'mg-sec', children: t('size') }),
@@ -1941,6 +2506,34 @@ function SizeRow({ prefs, update }) {
             String(px)
           )
         )
+      }),
+      jsx('div', { className: 'mg-sec', children: t('avatarPos') }),
+      jsx('div', {
+        className: 'mg-sizes',
+        children: [
+          jsx(
+            'button',
+            {
+              className: 'mg-size',
+              type: 'button',
+              'data-on': String(!onRight),
+              onClick: () => place(20),
+              children: t('leftSide')
+            },
+            'left'
+          ),
+          jsx(
+            'button',
+            {
+              className: 'mg-size',
+              type: 'button',
+              'data-on': String(onRight),
+              onClick: () => place(viewport - size - 28),
+              children: t('rightSide')
+            },
+            'right'
+          )
+        ]
       })
     ]
   })
@@ -1988,8 +2581,31 @@ function CopyButton({ snap, ctx }) {
  */
 function SettingsPanel({ prefs: prefsAtom, update, onClose }) {
   const prefs = useValue(prefsAtom)
+  const [mode, setMode] = useState('simple')
+  const viewport = typeof window !== 'undefined' ? Number(window.innerWidth) || 1280 : 1280
+  const onRight = (Number(prefs.posX) || 20) > viewport / 2 - 40
+  const simple = mode !== 'advanced'
+  const sections = simple
+    ? [
+        jsx(Section, { title: t('presets'), children: jsx(PresetRow, { prefs: prefsAtom, update }) }, 'p'),
+        jsx(Section, { title: t('mascot'), children: jsx(ImageSetup, { prefs: prefsAtom, update }) }, 'm'),
+        jsx(Section, { title: t('size'), children: jsx(SizeRow, { prefs: prefsAtom, update }) }, 's'),
+        jsx(Section, { title: t('language'), children: jsx(LanguageRow, { prefs: prefsAtom, update }) }, 'l')
+      ]
+    : [
+        jsx(Section, { title: t('mascot'), children: jsx(ImageSetup, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('cards'), children: jsx(CardRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('colour'), children: jsx(ColourRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('preview'), children: jsx(PreviewRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('position'), children: jsx(PositionRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('panelPos'), children: jsx(PanelPosRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('size'), children: jsx(SizeRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('language'), children: jsx(LanguageRow, { prefs: prefsAtom, update }) }),
+        jsx(Section, { title: t('widgets'), children: jsx(Toggles, { prefs, update }) })
+      ]
   return jsxs('div', {
     className: 'mg-modal',
+    'data-side': onRight ? 'right' : 'left',
     children: [
       jsxs('div', {
         className: 'mg-modal-head',
@@ -2016,15 +2632,25 @@ function SettingsPanel({ prefs: prefsAtom, update, onClose }) {
         ]
       }),
       jsxs('div', {
-        className: 'mg-modal-grid',
+        className: 'mg-tabs',
         children: [
-          jsx(Section, { title: t('mascot'), children: jsx(ImageSetup, { prefs: prefsAtom, update }) }),
-          jsx(Section, { title: t('cards'), children: jsx(CardRow, { prefs: prefsAtom, update }) }),
-          jsx(Section, { title: t('size'), children: jsx(SizeRow, { prefs: prefsAtom, update }) }),
-          jsx(Section, { title: t('language'), children: jsx(LanguageRow, { prefs: prefsAtom, update }) }),
-          jsx(Section, { title: t('widgets'), children: jsx(Toggles, { prefs, update }) })
+          jsx('button', {
+            className: 'mg-tab',
+            type: 'button',
+            'data-on': String(simple),
+            onClick: () => setMode('simple'),
+            children: t('simple')
+          }),
+          jsx('button', {
+            className: 'mg-tab',
+            type: 'button',
+            'data-on': String(!simple),
+            onClick: () => setMode('advanced'),
+            children: t('advanced')
+          })
         ]
-      })
+      }),
+      jsx('div', { className: simple ? 'mg-modal-grid' : 'mg-modal-grid mg-single', children: sections })
     ]
   })
 }
@@ -2036,6 +2662,7 @@ function SettingsPane({ prefs: prefsAtom, update }) {
     children: [
       jsx(Section, { title: t('mascot'), children: jsx(ImageSetup, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('cards'), children: jsx(CardRow, { prefs: prefsAtom, update }) }),
+      jsx(Section, { title: t('colour'), children: jsx(ColourRow, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('size'), children: jsx(SizeRow, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('language'), children: jsx(LanguageRow, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('widgets'), children: jsx(Toggles, { prefs, update }) })
@@ -2098,21 +2725,27 @@ function MascotFloat({ prefs: prefsAtom, update, ctx }) {
   const settingsOpen = useValue(panelAtom)
   const setSettingsOpen = panelAtom.set
   const reaction = useReaction()
+  /* While the settings panel is open the agent is usually idle, so the glow
+     would never render; this previews it at the chosen intensity instead. */
+  const auraPreview = Boolean(settingsOpen) && Boolean(prefs.previewAura)
 
   return jsxs('div', {
     className: 'mg-float',
     'data-state': stateOf(snap),
     'data-reaction': reaction || undefined,
-    style: { left: `${pos.x}px`, bottom: `${pos.y}px` },
+    style: { left: `${pos.x}px`, bottom: `${pos.y}px`, ...skinVars(prefs) },
     children: [
       jsx(Boundary, {
         children: jsxs('div', {
           className: 'mg-stack',
           children: [
-      open ? null : jsx(Speech, { snap, prefs }),
-      open
+      open && !(settingsOpen && prefs.hidePanelInSettings)
         ? jsxs('div', {
             className: 'mg-bubble',
+            style:
+              Number(prefs.panelX) || Number(prefs.panelY)
+                ? { transform: `translate(${Number(prefs.panelX) || 0}px, ${Number(prefs.panelY) || 0}px)` }
+                : undefined,
             children: [
               jsx(StatusCard, { prefs, snap }),
               jsx(ActivityBlock, { snap }),
@@ -2138,6 +2771,13 @@ function MascotFloat({ prefs: prefsAtom, update, ctx }) {
             ]
           })
         : null,
+      /* Speech sits right above the mascot, under the status panel: the bubble
+         reads as coming from the avatar instead of floating above the panel. */
+      open && !settingsOpen
+        ? null
+        : settingsOpen && !prefs.showBubbleInSettings
+          ? null
+          : jsx(Speech, { snap, prefs }),
       jsxs('button', {
         className: 'mg-mascot-btn',
         type: 'button',
@@ -2147,6 +2787,9 @@ function MascotFloat({ prefs: prefsAtom, update, ctx }) {
         'data-float': String(prefs.float),
         'data-state': state,
         'data-pulse': String(prefs.pulse),
+        'data-aura': String(prefs.pulse || auraPreview),
+        'data-aura-style': prefs.auraStyle || 'soft',
+        'data-preview': String(auraPreview),
         onClick: () => {
           if (drag.moved) {
             drag.moved = false
@@ -2157,12 +2800,28 @@ function MascotFloat({ prefs: prefsAtom, update, ctx }) {
         onPointerDown,
         onPointerMove,
         onPointerUp,
-        children: [
-          jsx(MascotArt, { size: 'full' }),
-        ]
+        children: jsx('div', {
+          className: 'mg-stage',
+          style: artTransform(prefs),
+          children: [
+            auraPreview || (prefs.pulse && (prefs.auraAlways || state === 'busy' || state === 'thinking'))
+              ? jsx('span', {
+                  className: 'mg-aura',
+                  style: auraPreview && state !== 'busy' && state !== 'thinking'
+                    ? { opacity: (Number(prefs.auraAlpha) || 55) / 100 }
+                    : undefined
+                })
+              : null,
+            jsx(MascotArt, { size: 'full', bare: true })
+          ]
+        })
       }),
       jsx('div', {
         className: 'mg-under',
+        style:
+          Number(prefs.cardX) || Number(prefs.cardY)
+            ? { transform: `translate(${Number(prefs.cardX) || 0}px, ${Number(prefs.cardY) || 0}px)` }
+            : undefined,
         children: jsx(InfoChips, { snap, prefs: prefsAtom, update })
       }),
       settingsOpen ? jsx(SettingsPanel, { prefs: prefsAtom, update, onClose: () => setSettingsOpen(false) }) : null
@@ -2242,6 +2901,7 @@ function MascotPane({ prefs: prefsAtom, update, ctx }) {
     children: [
       jsx(Section, { title: t('mascot'), children: jsx(ImageSetup, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('cards'), children: jsx(CardRow, { prefs: prefsAtom, update }) }),
+      jsx(Section, { title: t('colour'), children: jsx(ColourRow, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('size'), children: jsx(SizeRow, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('language'), children: jsx(LanguageRow, { prefs: prefsAtom, update }) }),
       jsx(Section, { title: t('widgets'), children: jsx(Toggles, { prefs, update }) })
@@ -2296,7 +2956,7 @@ export default {
     try {
       const onTool = host.onEvent('tool.start', payload => {
         liveAtom.set({ busy: true, phase: 'working', at: Date.now() })
-        pushActivity(toolLabel(payload), true)
+        pushActivity({ tool: toolName(payload) }, true)
       })
       if (typeof onTool === 'function' && typeof ctx.onDispose === 'function') ctx.onDispose(onTool)
       const onStart = host.onEvent('message.start', () => liveAtom.set({ busy: true, phase: 'thinking', at: Date.now() }))
@@ -2313,7 +2973,7 @@ export default {
       const onErr = host.onEvent('error', () => reactionAtom.set({ kind: 'shake', at: Date.now() }))
       if (typeof onErr === 'function' && typeof ctx.onDispose === 'function') ctx.onDispose(onErr)
 
-      const onMsgStart = host.onEvent('message.start', () => pushActivity(t('writing')))
+      const onMsgStart = host.onEvent('message.start', () => pushActivity({ key: 'writing' }))
       if (typeof onMsgStart === 'function' && typeof ctx.onDispose === 'function') ctx.onDispose(onMsgStart)
 
       const onActivate = host.onEvent('session.activate', payload => {

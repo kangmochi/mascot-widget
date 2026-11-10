@@ -1,3 +1,10 @@
 test/plugin.copy.mjs
 node_modules/
 .DS_Store
+HANDOFF.md
+
+# local preview/scratch generators (not shipped)
+colour_demo.py
+colour-demo.html
+settings_demo.py
+settings-demo.html
