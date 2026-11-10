@@ -42,8 +42,13 @@ Single file. No build step, no dependencies, no network calls.
 ## Install
 
 ```bash
+# from the plugin catalog (once listed)
+hermes plugins install mascot-guide
+hermes plugins enable mascot-guide
+
+# or straight from this repo
 mkdir -p "$HERMES_HOME/desktop-plugins/mascot-guide"
-cp plugin.js "$HERMES_HOME/desktop-plugins/mascot-guide/plugin.js"
+cp desktop/plugin.js "$HERMES_HOME/desktop-plugins/mascot-guide/plugin.js"
 ```
 
 The plugin id (folder name) is **`mascot-guide`** — that is what the desktop app looks for,

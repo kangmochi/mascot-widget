@@ -8,7 +8,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path('/home/hermes/work/mascot-guide')
-src = (ROOT / 'plugin.js').read_text()
+src = (ROOT / 'desktop' / 'plugin.js').read_text()
 css = re.search(r"const CSS = `([\s\S]*?)`", src).group(1)
 FULL = re.search(r"const MASCOT_FULL = '([^']+)'", src).group(1)
 
