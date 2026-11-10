@@ -8,7 +8,7 @@ Single file. No build step, no dependencies, no network calls.
 
 ![The mascot while the agent works](docs/demo-teaser.gif)
 
-[Watch the 60-second demo](docs/mascot-widget-demo.mp4) — idle, working, the status panel and the settings sheet.
+[Watch the one-minute demo](docs/mascot-widget-demo.mp4) — idle, working, the status panel and the settings sheet, with voice-over.
 
 ![The mascot while the agent works](docs/shots/working.png)
 
